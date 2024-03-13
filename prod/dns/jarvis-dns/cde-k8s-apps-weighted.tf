@@ -1591,3 +1591,13 @@ module "payments-card-present-statuscake-weighted" {
   weight_record = "${var.cde_weight_record_concierge_v2}"
   ttl           = ["60", "60", "60", "60"]
 }
+
+module "payments-card-present-statuscake-weighted" {
+  source        = "../../modules/weighted-dns-no-intermediate"
+  zone_id       = "${data.aws_route53_zone.com.id}"
+  record_name   = "payments-card-present-statuscake"
+  env           = "cde"
+  weight_dns    = "${var.cde_weight_dns_v2}"
+  weight_record = "${var.cde_weight_record_concierge_v2}"
+  ttl           = ["60", "60", "60", "60"]
+}
