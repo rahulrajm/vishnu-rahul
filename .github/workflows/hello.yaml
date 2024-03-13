@@ -10,13 +10,17 @@ on:
 jobs:
   hello:
     runs-on: ubuntu-latest
+    
     steps:
        - uses: actions/checkout@v2
        - name: hello world
-         run: echo "heloo world"
+         run: |
+          echo "heloo world"
+          exit 1
          shell: bash
   gootbye:
     runs-on: ubuntu-latest
+    needs: first-job
     steps:
        - name: good bye
          run: echo "good bye"
