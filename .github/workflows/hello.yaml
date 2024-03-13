@@ -20,7 +20,7 @@ jobs:
          shell: bash
   gootbye:
     runs-on: ubuntu-latest
-    needs: first-job
+    needs: hello
     steps:
        - name: good bye
          run: echo "good bye"
