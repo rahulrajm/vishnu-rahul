@@ -23,7 +23,7 @@ jobs:
             exit 1
           fi
 
-          if [ -z "$(find . -type d -name jarvis-dns)" ]; then
+          if [ ! -d "**/jarvis-dns" ]; then
             echo "jarvis-dns folder not found. Exiting."
             exit 1
           fi
