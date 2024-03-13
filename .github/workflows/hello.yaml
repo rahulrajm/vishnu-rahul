@@ -23,8 +23,7 @@ jobs:
             exit 1
           fi
 
-          # Validate the presence of jarvis-dns folder
-          if [ ! -d "jarvis-dns" ] && [ ! -d "prod/dns/jarvis-dns" ]; then
+          if [ -z "$(find . -type d -name jarvis-dns)" ]; then
             echo "jarvis-dns folder not found. Exiting."
             exit 1
           fi
