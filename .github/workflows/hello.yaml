@@ -1,27 +1,45 @@
-name: hello world workflow
+name: Two-Job Workflow
+
 on:
-  push:
-    branches:
-      - main
   pull_request:
-      branches:
-         - main
-  workflow_dispatch:
+    types:
+      - opened
+      - synchronize
+
 jobs:
-  hello:
+  first-job:
     runs-on: ubuntu-latest
-    
+
     steps:
-       - uses: actions/checkout@v2
-       - name: hello world
-         run: |
-          echo "heloo world"
-          exit 1
-         shell: bash
-  gootbye:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Validate commit author and jarvis-dns folder
+        run: |
+          # Validate the commit author
+          COMMIT_AUTHOR=$(git log --format='%an' -n 1)
+          if [ "$COMMIT_AUTHOR" != "rahulrajm" ]; then
+            echo "Commit author is not rahulrajm. Exiting."
+            exit 1
+          fi
+
+          # Validate the presence of jarvis-dns folder
+          if [ ! -d "*/jarvis-dns" ]; then
+            echo "jarvis-dns folder not found. Exiting."
+            exit 1
+          fi
+
+      - name: Run first job
+        run: echo "Running first job"
+
+  second-job:
     runs-on: ubuntu-latest
-    needs: hello
+
+    needs: first-job
+
     steps:
-       - name: good bye
-         run: echo "good bye"
-         shell: bash    
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run second job
+        run: echo "Running second job"
