@@ -1,12 +1,8 @@
 name: Two-Job Workflow
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-  push:
     paths:
-    - 'prod/dns/jarvis-dns/**'
+      - 'prod/dns/jarvis-dns/**'
 
 jobs:
   first-job:
