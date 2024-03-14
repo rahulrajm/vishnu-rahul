@@ -6,6 +6,7 @@ on:
 
 jobs:
   first-job:
+    if: github.event.pull_request.commits == 1
     runs-on: ubuntu-latest
 
     steps:
