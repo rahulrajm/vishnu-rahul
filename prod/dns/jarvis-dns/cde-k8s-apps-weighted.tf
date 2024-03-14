@@ -1,6 +1,6 @@
 // weight_dns, setid and weight_record will decide the weightage. Its takes the weightage in the order which is defined in the list.
 
-module "prod-api-weighted" {
+ieeemodule "prod-api-weighted" {
   source        = "../../modules/weighted-dns-no-intermediate"
   zone_id       = data.aws_route53_zone.com.id
   record_name   = "prod-api-weighted"
